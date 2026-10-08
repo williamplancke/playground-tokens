@@ -26,15 +26,14 @@ class Tokenizer():
         else:
             return self.vocabulary[input]
     def encode(self, tokens):
-        token_ids = tokens
-        for i, token_id in enumerate(token_ids):
-            token_ids[i] = self.obtain_token(token_id)
+        token_ids = []
+        for token in tokens:
+            token_ids.append(self.obtain_token(token))
         return token_ids
     def decode(self, token_ids):
-        assert(type(token_ids) == list)
-        tokens = token_ids
-        for i, token in enumerate(tokens):
-            tokens[i] = self.obtain_word(token)
+        tokens = []
+        for token_id in token_ids:
+            tokens.append(self.obtain_word(token_id))
         return tokens
     def prepare_input(self, input):
         assert(type(input) == str)
